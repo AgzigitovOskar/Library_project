@@ -13,7 +13,7 @@ class Book(BaseModel):
     title = models.CharField('Название', max_length=50)
     author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='books', verbose_name="Автор")
     description = models.TextField('Описание', null=True, blank=True)
-    sheets = models.PositiveSmallIntegerField('Кол-во страниц')
+    sheets = models.PositiveSmallIntegerField('Кол-во страниц', default=0)
     quantity = models.PositiveSmallIntegerField('Кол-во шт.', default=0)
 
     def __str__(self):

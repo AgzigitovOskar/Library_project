@@ -1,18 +1,26 @@
+import json
+
 from django.http import HttpResponse
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+
+from core.models import Book, Reader, Author
+from core.serializers import BookListRetrieveSerializer, ReaderListRetrieveSerializer, AuthorListRetrieveSerializer
 
 
 def index(request):
     return HttpResponse("Библиотека")
 
 
-def book(request):
-    return HttpResponse("Книги")
+class BooksViewSet(ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookListRetrieveSerializer
 
 
-def reader(request):
-    return HttpResponse("Читатели")
+class ReadersViewSet(ModelViewSet):
+    queryset = Reader.objects.all()
+    serializer_class = ReaderListRetrieveSerializer
 
 
-def author(request):
-    return HttpResponse("Авторы")
+class AuthorsViewSet(ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorListRetrieveSerializer
